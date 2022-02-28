@@ -1,1 +1,2 @@
-# opinion_detector
+# Opinion Detector
+A sentiment analysis tool for movie reviews.
