@@ -73,7 +73,7 @@ def main():
     tfidf_matrix = vectorize_reviews(corpus['Lemmas'])
 
     x, y = tfidf_matrix, corpus['Sentiment']
-    x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.75, random_state=42)
+    x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.75)
 
     classifier = train_model(x_train, y_train)
     y_predicted = classifier.predict(x_test)
