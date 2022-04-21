@@ -1,3 +1,4 @@
+import nltk
 import pandas as pd
 from nltk import regexp_tokenize
 from nltk.stem import WordNetLemmatizer
@@ -22,7 +23,11 @@ def load_corpus(filename: str) -> pd.DataFrame:
 
 def add_lemmas(corpus: pd.DataFrame) -> pd.Series:
     tokens = corpus['Review'].apply(tokenize)
-    lemmas = tokens.apply(lemmatize)
+    try:
+        lemmas = tokens.apply(lemmatize)
+    except LookupError:
+        nltk.download('omw-1.4')
+        lemmas = tokens.apply(lemmatize)
     lemmas = lemmas.apply(remove_stopwords)
     return lemmas
 
